@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="             http://maven.apache.org/POM/4.0.0             http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ru.fors</groupId>
+  <artifactId>MGI2.0</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <developers>
+    <developer>
+      <name>Alexander Zhaleiko</name>
+      <email>azhaleiko@gmail.com</email>
+    </developer>
+  </developers>
+
+  <properties>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <testng.selenium.endpoint>https://google.com</testng.selenium.endpoint>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.github.detro</groupId>
+      <artifactId>phantomjsdriver</artifactId>
+      <version>1.2.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>2.45.0</version>
+      <scope>test</scope>
+    </dependency>
+	<dependency>
+	<groupId>org.seleniumhq.selenium</groupId>
+	<artifactId>selenium-remote-driver</artifactId>
+	<version>2.45.0</version>
+	</dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.8.21</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+   <resources> 
+      <resource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+	 <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin> 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18.1</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+	  <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>local</id>
+      <properties>
+        <env>local</env>
+        <user.username></user.username>
+        <user.password></user.password>
+        <grid2.hub></grid2.hub>
+        <site.url>http://mgi.fors.ru/</site.url>
+        <browser.name>chrome</browser.name>
+        <browser.version></browser.version>
+        <browser.platform></browser.platform>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+	</profiles>
+</project>
