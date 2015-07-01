@@ -5,12 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AnyPage {
+public class AnyPage extends Page{
 	
-	private WebDriver driver;
+	private PageManager pages;
 
-	public AnyPage(WebDriver driver) {
-		this.driver = driver;
+	public AnyPage(PageManager pages) {
+		super(pages);
 	}
 	
 	@FindBy(linkText = "Выход")

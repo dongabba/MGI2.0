@@ -1,37 +1,26 @@
 package ru.fors.mgi.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import ru.fors.mgi.model.User;
 
 public class MainPage extends AnyPage {
 
-	private WebDriver driver;
+	private PageManager pages;
 	
-	public MainPage(WebDriver driver) {
-		super(driver);
+	public MainPage(PageManager pages) {
+		super(pages);
 	}
 	
-	private void clickLogoutButton(){
+	public void clickLogoutButton(){
 		logoutButton.click();
 	}
 	
 	public String getNameOfLoggedUser(){
 		return nameOfLoggedUser.getText();
 	}
-	
-	private User getLoggedUser(){
-		return new User().setName(getNameOfLoggedUser());
-	}
-	
-	public boolean isLoggedInAs(User user) {
-		return getLoggedUser().getName().equals(user.getName());
-	}
-	
-	public LoginPage logout(){
-		clickLogoutButton();
-		return new LoginPage(driver);
-	}
+
 	
 	
 	

@@ -8,14 +8,11 @@ import ru.fors.mgi.model.User;
 
 public class LoginPage extends AnyPage{
 
-	private WebDriver driver;
+	private PageManager pages;
 	
-
-	public LoginPage(WebDriver driver) {
-		super(driver);
-		// TODO Auto-generated constructor stub
+	public LoginPage(PageManager pages) {
+		super(pages);
 	}
-
 	
 	@FindBy(name = "username")
 	private WebElement usernameField;
@@ -26,27 +23,21 @@ public class LoginPage extends AnyPage{
 	@FindBy(css = "input[type=\"submit\"]")
 	private WebElement submitButton;
 
-	private LoginPage setUsernameField(String username){
+	public LoginPage setUsernameField(String username){
 		usernameField.clear();
 		usernameField.sendKeys(username);
 		return this;
 	}
 	
-	private LoginPage setPasswordField(String password){
+	public LoginPage setPasswordField(String password){
 		passwordField.clear();
 		passwordField.sendKeys(password);
 		return this;
 	}
 	
-	private void clickSubmitButton(){
+	public void clickSubmitButton(){
 		submitButton.click();
 	}
 	
-	public MainPage userLoginAs(User user){
-		setUsernameField(user.getLogin());
-		setPasswordField(user.getPassword());
-		clickSubmitButton();
-		return new MainPage(driver);
-	}
 
 }

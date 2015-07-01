@@ -7,8 +7,8 @@ public class LoginTests extends TestBase {
 
 	@Test
 	public void userLoginAsInsp(){
-		loginpage.userLoginAs(CAO_MGI_INSP);
-		Assert.assertTrue(mainpage.isLoggedInAs(CAO_MGI_INSP));
-		mainpage.logout();
+		userAction.userLoginAs(CAO_MGI_INSP);
+		Assert.assertTrue(userAction.isUserLoggedAs(CAO_MGI_INSP));
+		userAction.logout();
 	}
 }
